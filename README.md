@@ -61,3 +61,4 @@ vercel --prod # deploy to production
 
 - Priority registration opens August 24, 2026 — the countdown/date isn't automated, so double-check dates before launch if this repo sits for a while.
 - The `RE-V5RC-26-4727` event code on the homepage is for the Middle School division; the High School code is marked "coming soon" — update `index.html` once RECF issues it.
+# slugger-sig-website
