@@ -1,0 +1,300 @@
+/* ============================================================================
+   Louisville Slugger Signature Event — site layout.
+   Built on assets/tokens.css. The design is a fixed 288px rail beside a
+   full-bleed editorial column; below 1080px the rail becomes a scrolling
+   tab strip so every page still works without JavaScript.
+   ========================================================================= */
+
+/* Horizontal gutter for the editorial column: 64px at desktop, tighter on
+   small screens. Every full-bleed row reads it so edges stay aligned. */
+:root { --pad: clamp(22px, 5vw, 64px); --rail: 288px; --hdr: 72px; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 60;
+  background: var(--color-accent-solid); color: #fff; padding: 10px 16px;
+  font: 700 14px var(--font-heading); text-decoration: none;
+}
+.skip-link:focus-visible { left: 0; color: #fff; }
+
+/* ── masthead ─────────────────────────────────────────────────────────── */
+
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: #0d0c0c; color: #fff;
+  border-bottom: 4px solid var(--color-accent);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px; padding: 0 32px 0 0; min-height: var(--hdr);
+}
+.hdr-brand { display: flex; align-items: stretch; gap: 0; align-self: stretch; min-width: 0; text-decoration: none; color: inherit; }
+.hdr-mark {
+  display: flex; align-items: center; padding: 6px 20px;
+  border-right: 2px solid #2a2726; flex: none;
+}
+.hdr-mark img, .hdr-mark svg { display: block; height: 56px; width: auto; }
+.hdr-titles {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 24px; gap: 2px; min-width: 0; overflow: hidden;
+}
+.hdr-name {
+  font-family: var(--font-heading); font-size: 19px; font-weight: 800;
+  letter-spacing: -0.01em; line-height: 1.1; white-space: nowrap;
+}
+.kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.hdr-titles .kicker { color: #b9b4b2; white-space: nowrap; }
+.hdr-right { display: flex; align-items: center; gap: 28px; padding: 12px 0; flex: none; }
+.hdr-when { display: flex; flex-direction: column; gap: 2px; }
+.hdr-when .kicker { color: #b9b4b2; }
+/* The masthead must stay exactly 72px tall: .sidebar's sticky top and
+   .shell's min-height are both pinned to --hdr. Nothing here may wrap. */
+.hdr-where { font-size: 13px; color: #e7e4e3; white-space: nowrap; }
+
+/* ── shell: rail + column ─────────────────────────────────────────────── */
+
+.shell { display: grid; grid-template-columns: var(--rail) minmax(0, 1fr); min-height: calc(100vh - var(--hdr)); }
+
+.sidebar {
+  border-right: 2px solid var(--color-divider);
+  background: var(--color-surface);
+  display: flex; flex-direction: column;
+  position: sticky; top: var(--hdr); align-self: start;
+  height: calc(100vh - var(--hdr)); overflow-y: auto;
+}
+.side-meta {
+  padding: 20px 24px; border-bottom: 2px solid var(--color-divider);
+  display: flex; flex-direction: column; gap: 4px; flex: none;
+}
+.side-meta .kicker { color: var(--color-accent-700); }
+.side-meta-where { font-size: 13px; line-height: 1.4; color: var(--color-neutral-700); }
+
+.side-nav { display: flex; flex-direction: column; padding: 6px 0; flex: none; }
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 24px; border: none; border-radius: 0;
+  border-left: 4px solid transparent;
+  background: transparent; color: var(--color-text);
+  font: 600 16px var(--font-heading);
+  text-align: left; text-decoration: none; width: 100%; cursor: pointer;
+}
+.nav-item:hover { background: var(--color-accent-100); color: var(--color-text); }
+.nav-item:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+.nav-item.is-active {
+  border-left-color: var(--color-accent);
+  background: var(--color-accent-100);
+  color: var(--color-accent-700);
+}
+
+.side-codes {
+  padding: 18px 24px; border-top: 2px solid var(--color-divider);
+  display: flex; flex-direction: column; gap: 4px; flex: none; margin-top: auto;
+}
+.side-codes .kicker { letter-spacing: 0.12em; color: var(--color-neutral-700); }
+.side-codes span:not(.kicker) { font-size: 12px; color: var(--color-neutral-700); }
+
+.main { min-width: 0; display: flex; flex-direction: column; }
+.site-footer { margin-top: auto; }
+
+/* ── page furniture ───────────────────────────────────────────────────── */
+
+.page-header { padding: clamp(36px, 5vw, 56px) var(--pad) 32px; border-bottom: 2px solid var(--color-divider); }
+.page-header.is-hero { padding-top: clamp(40px, 6vw, 64px); padding-bottom: 40px; }
+.page-title {
+  font-family: var(--font-heading); font-size: clamp(34px, 5.4vw, 52px);
+  line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; margin: 0;
+}
+.page-header .tag + .page-title { margin-top: 20px; }
+.hero-title {
+  font-family: var(--font-heading); font-size: clamp(38px, 7vw, 68px);
+  line-height: 0.98; font-weight: 800; letter-spacing: -0.03em;
+  margin: 24px 0 0; max-width: 16ch;
+}
+.lede {
+  font-size: clamp(17px, 1.4vw, 20px); line-height: 1.5; max-width: 62ch;
+  margin: 24px 0 0; color: var(--color-neutral-800); text-wrap: pretty;
+}
+.lede-sm { font-size: 17px; line-height: 1.55; max-width: 62ch; margin: 16px 0 0; color: var(--color-neutral-800); }
+.venue-line { font-family: var(--font-heading); font-size: clamp(20px, 2.2vw, 24px); font-weight: 700; line-height: 1.25; margin: 20px 0 0; }
+.venue-line span { font-weight: 400; font-size: 18px; color: var(--color-neutral-700); }
+
+.eyebrow {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  margin: 0 0 16px; color: var(--color-accent-700);
+}
+.prose { font-size: 16px; line-height: 1.6; margin: 0; color: var(--color-neutral-800); }
+
+.section { padding: clamp(36px, 4.5vw, 56px) var(--pad); border-bottom: 2px solid var(--color-divider); }
+.section-last { border-bottom: none; }
+.cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.cols-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
+
+/* Full-bleed row of split cells; the outer cells bleed into the page gutter. */
+.split { display: grid; border-bottom: 2px solid var(--color-divider); }
+.split-4 { grid-template-columns: repeat(4, 1fr); }
+.split-3 { grid-template-columns: repeat(3, 1fr); }
+.split-2 { grid-template-columns: repeat(2, 1fr); }
+.split > * { padding: 32px 24px; border-right: 2px solid var(--color-divider); }
+.split > :last-child { border-right: none; padding-right: var(--pad); }
+.split > :first-child { padding-left: var(--pad); }
+
+.stat-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-700); }
+.stat-value { font-family: var(--font-heading); font-size: clamp(30px, 3.2vw, 40px); font-weight: 800; line-height: 1.1; margin-top: 6px; }
+.stat-note { font-size: 13px; color: var(--color-neutral-700); }
+.fact-value { font-family: var(--font-heading); font-size: clamp(30px, 3vw, 36px); font-weight: 800; line-height: 1.1; }
+.fact-note { font-size: 15px; line-height: 1.5; color: var(--color-neutral-800); margin-top: 8px; }
+
+/* Accent band — the one place the page goes full red. */
+.band { padding: clamp(36px, 4.5vw, 56px) var(--pad); background: var(--color-accent-solid); color: #fff; }
+.band .kicker { letter-spacing: 0.16em; font-size: 12px; }
+.band-title {
+  font-family: var(--font-heading); font-size: clamp(30px, 3.6vw, 44px);
+  line-height: 1.08; font-weight: 800; letter-spacing: -0.025em;
+  margin: 16px 0 0; max-width: 30ch;
+}
+.band-body { font-size: 17px; line-height: 1.55; max-width: 60ch; margin: 20px 0 0; }
+.band a { color: #fff; }
+
+/* ── schedule ─────────────────────────────────────────────────────────── */
+
+.day { padding: 40px var(--pad); border-bottom: 2px solid var(--color-divider); }
+.day-grid { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 40px; }
+.day-head .kicker { color: var(--color-accent-700); }
+.day-title { font-family: var(--font-heading); font-size: clamp(24px, 2.6vw, 30px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 8px 0 0; }
+.day-hours { font-size: 14px; color: var(--color-neutral-700); margin-top: 8px; }
+.slot {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 24px;
+  padding: 12px 0; border-bottom: 1px solid var(--color-neutral-200);
+}
+.slot:last-child { border-bottom: none; }
+.slot-time { font-family: var(--font-heading); font-weight: 700; font-size: 16px; font-variant-numeric: tabular-nums; }
+.slot-what { font-size: 16px; line-height: 1.45; }
+
+/* ── registration ─────────────────────────────────────────────────────── */
+
+.reg-col { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 40px 24px; }
+.reg-title { font-family: var(--font-heading); font-size: clamp(24px, 2.4vw, 30px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.reg-meta { font-size: 15px; color: var(--color-neutral-700); }
+.reg-col .btn { margin-top: 8px; }
+
+/* ── judging ──────────────────────────────────────────────────────────── */
+
+.callout { padding: 40px var(--pad); border-bottom: 2px solid var(--color-divider); background: var(--color-accent-100); }
+.callout .kicker { color: var(--color-accent-700); }
+.callout-value { font-family: var(--font-heading); font-size: clamp(26px, 3vw, 34px); font-weight: 800; letter-spacing: -0.02em; margin-top: 10px; line-height: 1.15; }
+.callout p { font-size: 16px; line-height: 1.6; max-width: 68ch; margin: 14px 0 0; color: var(--color-neutral-800); }
+
+.awards-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 2px solid var(--color-divider); border-left: 2px solid var(--color-divider);
+}
+.award {
+  padding: 18px 20px;
+  border-right: 2px solid var(--color-divider); border-bottom: 2px solid var(--color-divider);
+  font-family: var(--font-heading); font-size: 17px; font-weight: 600;
+}
+.footnote { font-size: 14px; line-height: 1.6; margin: 20px 0 0; color: var(--color-neutral-700); }
+
+/* ── lists & misc ─────────────────────────────────────────────────────── */
+
+.checklist { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; max-width: 74ch; }
+.checklist li {
+  display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px;
+  font-size: 16px; line-height: 1.5; padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+.checklist li::before { content: "\2192"; color: var(--color-accent); }
+.tagrow { display: flex; flex-wrap: wrap; gap: 10px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; align-items: center; }
+
+/* Not-yet-live call to action. A faded .btn-primary drops to 1.9:1, which is
+   unreadable; a dashed outline says "not available yet" and stays legible. */
+.btn-pending {
+  background: transparent; cursor: default;
+  border: 1px dashed var(--color-neutral-500);
+  color: var(--color-neutral-800);
+}
+.contact-email { font-family: var(--font-heading); font-size: clamp(19px, 2vw, 24px); font-weight: 700; margin-top: 8px; word-break: break-word; }
+.contact-note { font-size: 15px; color: var(--color-neutral-700); margin-top: 8px; }
+
+.site-footer {
+  padding: 28px var(--pad); border-top: 2px solid var(--color-divider);
+  display: flex; justify-content: space-between; gap: 24px;
+  font-size: 13px; color: var(--color-neutral-700); flex-wrap: wrap;
+}
+
+/* ── responsive ───────────────────────────────────────────────────────── */
+
+@media (max-width: 1180px) {
+  .cols-3 { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .awards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Below the rail's comfortable width the nav flips to a scrolling tab strip
+   pinned under the masthead. Still no JavaScript: the links stay visible. */
+@media (max-width: 1080px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .sidebar {
+    position: sticky; top: var(--hdr); z-index: 15;
+    height: auto; overflow: visible;
+    border-right: none; border-bottom: 2px solid var(--color-divider);
+  }
+  .side-meta, .side-codes { display: none; }
+  .side-nav {
+    flex-direction: row; padding: 0;
+    overflow-x: auto; scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-item {
+    width: auto; flex: none; white-space: nowrap;
+    padding: 12px 18px; font-size: 15px;
+    border-left: none; border-bottom: 3px solid transparent;
+  }
+  .nav-item.is-active { border-left-color: transparent; border-bottom-color: var(--color-accent); }
+  .hdr-when { display: none; }
+  .split-4 { grid-template-columns: repeat(2, 1fr); }
+  .split-4 > :nth-child(2) { border-right: none; padding-right: var(--pad); }
+  .split-4 > :nth-child(3) { padding-left: var(--pad); }
+  .split-4 > :nth-child(-n+2) { border-bottom: 2px solid var(--color-divider); }
+}
+
+@media (max-width: 860px) {
+  .site-header { padding-right: var(--pad); gap: 16px; }
+  .hdr-brand { flex: 0 1 auto; }
+  .hdr-mark { padding-left: var(--pad); }
+  .hdr-right { gap: 16px; }
+  .day-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .cols-2 { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .split-3 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Phone: the crest already carries the full wordmark, so drop the repeated
+   lockup text rather than shrink it into an ellipsis. */
+@media (max-width: 680px) {
+  .hdr-titles { display: none; }
+  .hdr-mark { border-right: none; }
+  .cols-3 { grid-template-columns: minmax(0, 1fr); }
+  .awards-grid { grid-template-columns: minmax(0, 1fr); }
+  .split-4, .split-2 { grid-template-columns: minmax(0, 1fr); }
+  .slot { grid-template-columns: 84px minmax(0, 1fr); gap: 14px; }
+  .site-footer { flex-direction: column; gap: 6px; }
+}
+
+/* Any stacked split row: kill the vertical rules, restore the full gutter. */
+@media (max-width: 860px) {
+  .split-3 > * { border-right: none; border-bottom: 2px solid var(--color-divider); padding-inline: var(--pad); }
+  .split-3 > :last-child { border-bottom: none; }
+}
+@media (max-width: 680px) {
+  .split > * { border-right: none; border-bottom: 2px solid var(--color-divider); padding-inline: var(--pad); }
+  .split > :last-child { border-bottom: none; }
+}
+
+@media (max-width: 480px) {
+  .hdr-mark { padding-right: 14px; }
+  .slot { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+
+@media print {
+  .site-header, .sidebar, .skip-link { display: none; }
+  .shell { display: block; }
+  .band, .callout { background: none; color: var(--color-text); }
+}
