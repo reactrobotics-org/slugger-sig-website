@@ -200,12 +200,19 @@
 /* ── lists & misc ─────────────────────────────────────────────────────── */
 
 .checklist { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; max-width: 74ch; }
+/* The arrow is positioned, not a grid/flex track. A two-column grid here would
+   make every inline child its own grid item, so a bullet containing a link gets
+   torn apart — the link lands in the 20px marker column and the text after it
+   collides. Positioning keeps each bullet a single inline flow. */
 .checklist li {
-  display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px;
-  font-size: 16px; line-height: 1.5; padding-bottom: 10px;
+  position: relative; padding-left: 32px; padding-bottom: 10px;
+  font-size: 16px; line-height: 1.5;
   border-bottom: 1px solid var(--color-neutral-200);
 }
-.checklist li::before { content: "\2192"; color: var(--color-accent); }
+.checklist li::before {
+  content: "\2192"; position: absolute; left: 0; top: 0;
+  color: var(--color-accent);
+}
 .tagrow { display: flex; flex-wrap: wrap; gap: 10px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; align-items: center; }
 
