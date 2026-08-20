@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Louisville Slugger Signature Event — VEX V5RC · Louisville, KY · Dec 5–7, 2026</title>
-<meta name="description" content="Official RECF VEX V5RC Signature Event in Louisville, Kentucky, December 5–7 2026. Middle School and High School tournaments at the Kentucky International Convention Center, hosted by REACT Robotics.">
+<meta name="description" content="Official VEX Robotics V5RC Signature Event in Louisville, Kentucky, December 5–7 2026. Middle School and High School tournaments at the Kentucky International Convention Center, hosted by REACT Robotics.">
 <meta name="theme-color" content="#0d0c0c">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Louisville Slugger Signature Event">
 <meta property="og:title" content="Louisville Slugger Signature Event — VEX V5RC · Louisville, KY · Dec 5–7, 2026">
-<meta property="og:description" content="Official RECF VEX V5RC Signature Event in Louisville, Kentucky, December 5–7 2026. Middle School and High School tournaments at the Kentucky International Convention Center, hosted by REACT Robotics.">
+<meta property="og:description" content="Official VEX Robotics V5RC Signature Event in Louisville, Kentucky, December 5–7 2026. Middle School and High School tournaments at the Kentucky International Convention Center, hosted by REACT Robotics.">
 <meta property="og:image" content="assets/slugger-logo.png">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.className += " js";</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -29,7 +30,7 @@
     </span>
     <span class="hdr-titles">
       <span class="hdr-name">Louisville Slugger Signature Event</span>
-      <span class="kicker">Official RECF Signature Event &middot; REACT Robotics</span>
+      <span class="kicker">Official VEX Robotics Signature Event &middot; REACT Robotics</span>
     </span>
   </a>
   <div class="hdr-right">
@@ -47,7 +48,12 @@
       <span class="kicker">Dec 5&ndash;7, 2026</span>
       <span class="side-meta-where">Kentucky International Convention Center &middot; Louisville, KY</span>
     </div>
-    <nav class="side-nav" aria-label="Event sections">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-eyebrow">Menu</span>
+      <span class="nav-toggle-current">Overview</span>
+      <svg class="nav-chev" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1.5 1.5 7 7 12.5 1.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <nav class="side-nav" id="site-nav" aria-label="Event sections">
       <a class="nav-item is-active" aria-current="page" href="index.html">Overview</a>
       <a class="nav-item" href="agenda.html">Agenda</a>
       <a class="nav-item" href="registration.html">Registration</a>
@@ -56,17 +62,12 @@
       <a class="nav-item" href="volunteer.html">Volunteer</a>
       <a class="nav-item" href="contact.html">Contact</a>
     </nav>
-    <div class="side-codes">
-      <span class="kicker">Event codes</span>
-      <span>MS &middot; VE-26-65538</span>
-      <span>HS &middot; RE-V5RC-26-4727</span>
-    </div>
   </aside>
 
   <main class="main" id="main">
 
     <header class="page-header is-hero">
-      <span class="tag tag-accent">Official RECF Signature Event</span>
+      <span class="tag tag-accent">Official VEX Robotics Signature Event</span>
       <h1 class="hero-title">Louisville Slugger Signature Event</h1>
       <p class="lede">VEX Robotics returns to Louisville, Kentucky &mdash; home to years of unforgettable VEX World Championship events &mdash; for a first-of-its-kind V5RC tournament hosted by REACT Robotics in partnership with Kentucky&rsquo;s most experienced tournament organizations.</p>
     </header>
@@ -137,12 +138,8 @@
         </a>
       </div>
     </section>
-
-    <footer class="site-footer">
-      <span>Louisville Slugger Signature Event &middot; V5RC &middot; MS VE-26-65538 &middot; HS RE-V5RC-26-4727</span>
-      <span>Hosted by REACT Robotics &middot; Kentucky</span>
-    </footer>
   </main>
 </div>
+<script src="assets/nav.js" defer></script>
 </body>
 </html>

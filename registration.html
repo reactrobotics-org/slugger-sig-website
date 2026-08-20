@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/tokens.css">
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.className += " js";</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -29,7 +30,7 @@
     </span>
     <span class="hdr-titles">
       <span class="hdr-name">Louisville Slugger Signature Event</span>
-      <span class="kicker">Official RECF Signature Event &middot; REACT Robotics</span>
+      <span class="kicker">Official VEX Robotics Signature Event &middot; REACT Robotics</span>
     </span>
   </a>
   <div class="hdr-right">
@@ -47,7 +48,12 @@
       <span class="kicker">Dec 5&ndash;7, 2026</span>
       <span class="side-meta-where">Kentucky International Convention Center &middot; Louisville, KY</span>
     </div>
-    <nav class="side-nav" aria-label="Event sections">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle-eyebrow">Menu</span>
+      <span class="nav-toggle-current">Registration</span>
+      <svg class="nav-chev" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1.5 1.5 7 7 12.5 1.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <nav class="side-nav" id="site-nav" aria-label="Event sections">
       <a class="nav-item" href="index.html">Overview</a>
       <a class="nav-item" href="agenda.html">Agenda</a>
       <a class="nav-item is-active" aria-current="page" href="registration.html">Registration</a>
@@ -56,36 +62,31 @@
       <a class="nav-item" href="volunteer.html">Volunteer</a>
       <a class="nav-item" href="contact.html">Contact</a>
     </nav>
-    <div class="side-codes">
-      <span class="kicker">Event codes</span>
-      <span>MS &middot; VE-26-65538</span>
-      <span>HS &middot; RE-V5RC-26-4727</span>
-    </div>
   </aside>
 
   <main class="main" id="main">
 
     <header class="page-header">
       <h1 class="page-title">Registration</h1>
-      <p class="lede-sm">Middle School and High School run as two separate tournaments on the same weekend, in the same hall &mdash; each with its own listing on events.vex.com. Register on the one that matches your team&rsquo;s grade level. Signature Event payment rules are strict: pay by the deadline to hold your spot.</p>
+      <p class="lede-sm">Middle School and High School run as two separate tournaments on the same weekend, in the same hall.</p>
     </header>
 
     <section class="split split-2">
       <div class="reg-col">
         <span class="tag tag-accent">Middle School</span>
-        <div class="reg-title">V5RC Middle School Tournament</div>
+        <div class="reg-title">Louisville Slugger Signature Event (Middle School)</div>
         <div class="reg-meta">Event code VE-26-65538 &middot; 80 team capacity &middot; $350 per team</div>
         <a class="btn btn-primary" href="https://events.vex.com/robot-competitions/vex-robotics-competition/VE-26-65538.html#general-info" target="_blank" rel="noopener">Register &mdash; Middle School</a>
       </div>
       <div class="reg-col">
         <span class="tag tag-accent">High School</span>
-        <div class="reg-title">V5RC High School Tournament</div>
+        <div class="reg-title">Louisville Slugger Signature Event (High School)</div>
         <div class="reg-meta">Event code RE-V5RC-26-4727 &middot; 80 team capacity &middot; $350 per team</div>
         <a class="btn btn-primary" href="https://events.vex.com/robot-competitions/vex-robotics-competition/RE-V5RC-26-4727.html#general-info" target="_blank" rel="noopener">Register &mdash; High School</a>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section-last">
       <h2 class="eyebrow">Key dates</h2>
       <table class="table">
         <thead>
@@ -102,32 +103,8 @@
         </tbody>
       </table>
     </section>
-
-    <section class="section section-last">
-      <div class="cols-3">
-        <div class="card">
-          <div class="card-kicker">Fee</div>
-          <div class="card-title">$350 per team</div>
-          <div class="card-body">Purchase orders accepted &mdash; contact the event partner for PO instructions and invoicing.</div>
-        </div>
-        <div class="card">
-          <div class="card-kicker">Limits</div>
-          <div class="card-title">6 teams per org</div>
-          <div class="card-body">A maximum of 50% of registrations may come from any one event region, keeping the field national.</div>
-        </div>
-        <div class="card">
-          <div class="card-kicker">Field control</div>
-          <div class="card-title">Smart Field Control</div>
-          <div class="card-body">In-person open tournament with Skills Challenge offered, including for VURC and VAIRC teams.</div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <span>Louisville Slugger Signature Event &middot; V5RC &middot; MS VE-26-65538 &middot; HS RE-V5RC-26-4727</span>
-      <span>Hosted by REACT Robotics &middot; Kentucky</span>
-    </footer>
   </main>
 </div>
+<script src="assets/nav.js" defer></script>
 </body>
 </html>
