@@ -1,5 +1,5 @@
 /* ============================================================================
-   Louisville Slugger Signature Event — site layout.
+   Louisville Slugger Signature Event: site layout.
    Built on assets/tokens.css. The design is a fixed 288px rail beside a
    full-bleed editorial column; below 1080px the rail becomes a scrolling
    tab strip so every page still works without JavaScript.
@@ -157,7 +157,7 @@
 .fact-value { font-family: var(--font-heading); font-size: clamp(30px, 3vw, 36px); font-weight: 800; line-height: 1.1; }
 .fact-note { font-size: 15px; line-height: 1.5; color: var(--color-neutral-800); margin-top: 8px; }
 
-/* Accent band — the one place the page goes full red. */
+/* Accent band: the one place the page goes full red. */
 .band { padding: clamp(36px, 4.5vw, 56px) var(--pad); background: var(--color-accent-solid); color: #fff; }
 .band .kicker { letter-spacing: 0.16em; font-size: 12px; }
 .band-title {
@@ -213,10 +213,28 @@
 
 /* ── lists & misc ─────────────────────────────────────────────────────── */
 
+/* FAQ: a plain stacked list on hairline rules, no accordion. With one or two
+   entries an accordion hides the only content on the page; when the list grows
+   long enough to need collapsing, that is the moment to add one. */
+.faq { margin: 0; padding: 0; max-width: 74ch; }
+/* Every item keeps its rule, including the last: that final line is what
+   separates the answers from the contact note underneath. The rule is a step
+   darker than the hairlines elsewhere on the site because here it is doing
+   real work, and neutral-200 on the page ground is all but invisible. */
+.faq-item { padding: 24px 0; border-bottom: 1px solid var(--color-neutral-300); }
+.faq-item:first-child { padding-top: 0; }
+.faq-q {
+  font-family: var(--font-heading); font-size: clamp(20px, 2.1vw, 26px);
+  font-weight: var(--font-heading-weight); line-height: 1.25;
+  letter-spacing: -0.015em; margin: 0;
+}
+/* <dd> carries a 40px UA indent that would break the left edge of the column. */
+.faq-a { margin: 10px 0 0; font-size: 16px; line-height: 1.6; color: var(--color-neutral-800); }
+
 .checklist { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; max-width: 74ch; }
 /* The arrow is positioned, not a grid/flex track. A two-column grid here would
    make every inline child its own grid item, so a bullet containing a link gets
-   torn apart — the link lands in the 20px marker column and the text after it
+   torn apart: the link lands in the 20px marker column and the text after it
    collides. Positioning keeps each bullet a single inline flow. */
 .checklist li {
   position: relative; padding-left: 32px; padding-bottom: 10px;
@@ -297,7 +315,7 @@
 
 /* The lockup's second line is the first thing to go as the masthead tightens.
    Clipping it mid-word reads as broken, and it is the least load-bearing text
-   up there — the event name beside it says the same thing. */
+   up there; the event name beside it says the same thing. */
 @media (max-width: 780px) {
   .hdr-titles .kicker { display: none; }
 }
