@@ -217,12 +217,16 @@
    entries an accordion hides the only content on the page; when the list grows
    long enough to need collapsing, that is the moment to add one. */
 .faq { margin: 0; padding: 0; max-width: 74ch; }
-.faq-item { padding: 22px 0; border-bottom: 1px solid var(--color-neutral-200); }
+/* Every item keeps its rule, including the last: that final line is what
+   separates the answers from the contact note underneath. The rule is a step
+   darker than the hairlines elsewhere on the site because here it is doing
+   real work, and neutral-200 on the page ground is all but invisible. */
+.faq-item { padding: 24px 0; border-bottom: 1px solid var(--color-neutral-300); }
 .faq-item:first-child { padding-top: 0; }
-.faq-item:last-child { border-bottom: none; }
 .faq-q {
-  font-family: var(--font-heading); font-size: clamp(18px, 1.8vw, 22px);
-  font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; margin: 0;
+  font-family: var(--font-heading); font-size: clamp(20px, 2.1vw, 26px);
+  font-weight: var(--font-heading-weight); line-height: 1.25;
+  letter-spacing: -0.015em; margin: 0;
 }
 /* <dd> carries a 40px UA indent that would break the left edge of the column. */
 .faq-a { margin: 10px 0 0; font-size: 16px; line-height: 1.6; color: var(--color-neutral-800); }
