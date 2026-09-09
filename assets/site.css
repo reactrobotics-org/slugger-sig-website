@@ -1,5 +1,5 @@
 /* ============================================================================
-   Louisville Slugger Signature Event: site layout.
+   Slugger Signature Event: site layout.
    Built on assets/tokens.css. The design is a fixed 288px rail beside a
    full-bleed editorial column; below 1080px the rail becomes a scrolling
    tab strip so every page still works without JavaScript.
@@ -26,9 +26,12 @@
   gap: 32px; padding: 0 32px 0 0; min-height: var(--hdr);
 }
 .hdr-brand { display: flex; align-items: stretch; gap: 0; align-self: stretch; min-width: 0; text-decoration: none; color: inherit; }
+/* The crest is drawn for a light ground: its wordmark is near-black and would
+   disappear against the masthead. It sits on a light plate rather than the
+   masthead being lightened, so the rest of the header keeps its contrast. */
 .hdr-mark {
   display: flex; align-items: center; padding: 6px 20px;
-  border-right: 2px solid #2a2726; flex: none;
+  background: var(--color-bg); flex: none;
 }
 .hdr-mark img, .hdr-mark svg { display: block; height: 56px; width: auto; }
 .hdr-titles {
@@ -117,6 +120,16 @@
   line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; margin: 0;
 }
 .page-header .tag + .page-title { margin-top: 20px; }
+/* Hero: copy beside the crest, which is the loudest thing on the page. Below
+   980px the crest moves above the copy so it still leads, rather than being
+   pushed under the fold by a full paragraph of text. */
+.hero-split {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 400px);
+  gap: clamp(32px, 4vw, 56px); align-items: center;
+}
+.hero-mark img { width: 100%; height: auto; }
+.hero-copy > :first-child { margin-top: 0; }
+
 .hero-title {
   font-family: var(--font-heading); font-size: clamp(38px, 7vw, 68px);
   line-height: 0.98; font-weight: 800; letter-spacing: -0.03em;
@@ -265,6 +278,11 @@
   .awards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (max-width: 980px) {
+  .hero-split { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero-mark { order: -1; width: 100%; max-width: 360px; }
+}
+
 /* Below the rail's comfortable width the nav flips to a scrolling tab strip
    pinned under the masthead. Still no JavaScript: the links stay visible. */
 @media (max-width: 1080px) {
@@ -334,7 +352,6 @@
    lockup text rather than shrink it into an ellipsis. */
 @media (max-width: 680px) {
   .hdr-titles { display: none; }
-  .hdr-mark { border-right: none; }
   .cols-3 { grid-template-columns: minmax(0, 1fr); }
   .awards-grid { grid-template-columns: minmax(0, 1fr); }
   .split-4, .split-2 { grid-template-columns: minmax(0, 1fr); }
