@@ -1,5 +1,5 @@
 /* ============================================================================
-   Modernist — design-system tokens and component classes.
+   Modernist: design-system tokens and component classes.
    Source of truth for the system's look, imported from the Claude Design
    project (_ds/modernist-ef080ca9…/styles.css). Retune values here.
    ========================================================================= */
@@ -17,7 +17,7 @@
   --color-accent-solid: #dd2b0f;
   --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
 
-  /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
+  /* Tonal ramps, generated in OKLCH on one shared lightness scale, so the
      same step of any role matches the others in visual value. */
   --color-neutral-100: #f8f4f4;
   --color-neutral-200: #eae7e7;
@@ -64,7 +64,7 @@
   --radius-md: 0px;
   --radius-lg: 0px;
 
-  /* Elevation — soft ink-tinted shadows on the light ground. */
+  /* Elevation: soft ink-tinted shadows on the light ground. */
   --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
   --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
   --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
@@ -107,10 +107,10 @@ figcaption {
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
 
-/* — rules — */
+/* rules */
 .hr { height: 2px; border: 0; margin: var(--space-4) 0; background: var(--color-divider); }
 
-/* — buttons — */
+/* buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   cursor: pointer; text-decoration: none;
@@ -131,7 +131,7 @@ figcaption {
 .btn-ghost { color: var(--color-accent-700); padding-inline: var(--space-1); }
 .btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
 
-/* — cards — */
+/* cards */
 .card {
   display: flex; flex-direction: column; gap: var(--space-2);
   padding: var(--space-3); border-radius: var(--radius-md); background: var(--color-surface);
@@ -141,7 +141,9 @@ figcaption {
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
   font-size: 17px; line-height: 1.2;
 }
-.card-body { margin: 0; font-size: 13px; opacity: 0.8; flex: 1; }
+/* Muted via colour, not opacity: opacity applies to the whole subtree, so a
+   link inside a 0.8-opacity card body gets faded too and drops below AA. */
+.card-body { margin: 0; font-size: 13px; color: var(--color-neutral-800); flex: 1; }
 .card-meta {
   display: flex; align-items: center; gap: 6px; font-size: 11px;
   color: color-mix(in srgb, var(--color-text) 50%, transparent);
@@ -150,7 +152,7 @@ figcaption {
 .elev-md { box-shadow: var(--shadow-md); }
 .elev-lg { box-shadow: var(--shadow-lg); }
 
-/* — tags — */
+/* tags */
 .tag {
   display: inline-flex; align-items: center; font-size: 11px;
   letter-spacing: 0.02em; padding: 3px 10px;
@@ -161,7 +163,7 @@ figcaption {
 .tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
 .tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent-700); }
 
-/* — tables — */
+/* tables */
 .table { width: 100%; border-collapse: collapse; font-size: 14px; }
 .table th {
   text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
