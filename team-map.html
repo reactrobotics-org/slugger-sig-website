@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registered Teams Map</title>
+<style>
+html,body,#map{width:100%;height:100%;margin:0;background:transparent;overflow:hidden}
+body{font-family:Arial,sans-serif}
+#map{min-height:560px}
+@media(max-width:700px){#map{min-height:470px}}
+</style>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+<div id="map" aria-label="Registered teams by state and province"></div>
+<script>
+const states = [{"state": "Alabama", "abbr": "AL", "count": 7, "hover": "<b>Alabama — 7 teams</b><br><br>25424X — Leprechaun Warfare<br>56448A — Apollo<br>56448B — Technovus<br>66722A — Project X<br>66722B — ERROR 404<br>66722C — Circuit Breakers<br>66722E — Lost Gears"}, {"state": "Arizona", "abbr": "AZ", "count": 1, "hover": "<b>Arizona — 1 teams</b><br><br>66556Z — Nameless"}, {"state": "Arkansas", "abbr": "AR", "count": 1, "hover": "<b>Arkansas — 1 teams</b><br><br>1211X — Xtra! Xtra!"}, {"state": "California", "abbr": "CA", "count": 9, "hover": "<b>California — 9 teams</b><br><br>12125X — Sublime X<br>12125Z — Sublime Z<br>1468A — _Underscore<br>1590A — Blue Army<br>18886X — GuGuGaGa<br>3588R — Highlight Reel<br>3588Y — Cyber Spacers<br>5776V — Viridian<br>68699A — Driving Nuggets"}, {"state": "Georgia", "abbr": "GA", "count": 2, "hover": "<b>Georgia — 2 teams</b><br><br>2771R — Ryft<br>2771X — 《XR》"}, {"state": "Indiana", "abbr": "IN", "count": 15, "hover": "<b>Indiana — 15 teams</b><br><br>18799A — A Team<br>18799M — MonkeyWrench<br>2390N — Nautical Nuts<br>2849G — G<br>2849M — Nerd Alert<br>2849W — Fire Force<br>46141A — Floating Hotdogs<br>46366A — IT'S GOT WABI-SABI<br>46366B — Wait... Wait... Wait...<br>46366X — Shake n' Bake<br>47126A — TeamA<br>47126C — ScrapMetal<br>47126Z — TeamZ<br>5690G — Glitch<br>6842V — Vicious Vortex"}, {"state": "Kentucky", "abbr": "KY", "count": 30, "hover": "<b>Kentucky — 30 teams</b><br><br>1229M — Mangled Metal<br>1229W — The Wet Sprockets<br>1255A — Alphahawks<br>1255D — Warhawk Delta<br>1255S — Spicy Bread<br>18640A — Chrome Dome<br>18640B — Bumblebee<br>18640C — C+++++++++<br>18640Y — St. Xavier Y<br>2930B — Blackout<br>3009H — Heroic Robotics<br>3440C — REACT - Ctrl-Alt-Delay<br>3440E — REACT - Echo<br>3440F — Fishous<br>3440J — REACT - Jimmy Jelly<br>3440M — Monarch<br>3440R — REACT - Redacted<br>3440S — REACT - Starlore<br>3440U — REACT - Unclassified<br>3440V — Corrosive<br>3440W — REACT - Whaddaname<br>3440X — REACT - Eggsilent<br>5631D — Dumpster Fire<br>62885A — KCDGearcats2<br>65554A — Asterisk<br>74656S — SHUTD0WN<br>76308A — KCDGearcats1<br>9257C — House Cats<br>95993A — KCDGearcats3<br>95993B — KCDGearcats4"}, {"state": "Massachusetts", "abbr": "MA", "count": 1, "hover": "<b>Massachusetts — 1 teams</b><br><br>96808A — XCV"}, {"state": "Missouri", "abbr": "MO", "count": 1, "hover": "<b>Missouri — 1 teams</b><br><br>59708A — Varsity"}, {"state": "Nebraska", "abbr": "NE", "count": 1, "hover": "<b>Nebraska — 1 teams</b><br><br>17788F — Frostbyte"}, {"state": "New York", "abbr": "NY", "count": 2, "hover": "<b>New York — 2 teams</b><br><br>16699X — Overclock MS<br>16699Y — Overclock MS"}, {"state": "Ohio", "abbr": "OH", "count": 12, "hover": "<b>Ohio — 12 teams</b><br><br>11254G — Antidisestablishmentarianism 3.0<br>11254W — Consistently Inconsistent<br>11254Y — Eruption<br>45133K — Korrupt<br>45434A — Atomic<br>6741A — Abyss<br>6741D — Doom<br>6741R — [redacted]<br>6978F — AWG<br>6978R — Roger68<br>8823A — Alter Ego<br>8823H — Hephaestus"}, {"state": "Oklahoma", "abbr": "OK", "count": 1, "hover": "<b>Oklahoma — 1 teams</b><br><br>1239E — Flashbang"}, {"state": "Pennsylvania", "abbr": "PA", "count": 1, "hover": "<b>Pennsylvania — 1 teams</b><br><br>81Y — VEXMEN: Paradox"}, {"state": "Tennessee", "abbr": "TN", "count": 8, "hover": "<b>Tennessee — 8 teams</b><br><br>26163A — Team Black Knights \"Lance\"<br>26163X — Team Black Knights \"Excalibur\"<br>40000A — Apogee<br>40000C — CAPTCHA<br>42652C — Slip Hazard<br>663A — &<br>99989E — Hazard - CODEmandos<br>99989Y — KNOT - CODEmandos"}, {"state": "Utah", "abbr": "UT", "count": 1, "hover": "<b>Utah — 1 teams</b><br><br>98548K — ½mv²"}, {"state": "Virginia", "abbr": "VA", "count": 4, "hover": "<b>Virginia — 4 teams</b><br><br>12914X — OmegaBotz<br>2145W — Pink Sleepee Unicorns<br>2145Y — Pink Spanglee Unicorns<br>2145Z — Pink Shinee Unicorns"}, {"state": "Washington", "abbr": "WA", "count": 2, "hover": "<b>Washington — 2 teams</b><br><br>10K — Exothermic Knockout<br>938X — Blaze Xtra hot sauce"}];
+const provinces = [{"province": "British Columbia", "count": 6, "lat": 49.177889, "lon": -123.1443244, "hover": "<b>British Columbia — 6 teams</b><br><br>800Y — Richmond Robotics Activity Center<br>800Z — Richmond Robotics Activity Center<br>886A — ARPW | WPRA<br>886F — Faailures | WPRA<br>886H — High Stakes | WPRA<br>886U — Über | WPRA"}, {"province": "Ontario", "count": 1, "lat": 43.8655954, "lon": -79.3402166, "hover": "<b>Ontario — 1 teams</b><br><br>81208X — LeRoi Xenon"}, {"province": "Quebec", "count": 2, "lat": 45.5165633, "lon": -73.7468475, "hover": "<b>Quebec — 2 teams</b><br><br>20315A — Marcelline A<br>20315D — Marcelline D"}];
+const traces = [{
+  type:'choropleth',
+  locationmode:'USA-states',
+  locations:states.map(d=>d.abbr),
+  z:states.map(d=>d.count),
+  text:states.map(d=>d.hover),
+  hovertemplate:'%{text}<extra></extra>',
+  colorscale:'Blues',
+  reversescale:false,
+  marker:{line:{color:'#ffffff',width:1.5}},
+  colorbar:{title:'Teams', thickness:14, len:0.72, x:0.98},
+  showscale:true
+}];
+if (provinces.length) {
+  traces.push({
+    type:'scattergeo',
+    mode:'markers',
+    lat:provinces.map(d=>d.lat),
+    lon:provinces.map(d=>d.lon),
+    text:provinces.map(d=>d.hover),
+    hovertemplate:'%{text}<extra></extra>',
+    marker:{size:provinces.map(d=>12 + d.count*1.4), line:{color:'#ffffff',width:1.3}, color:'#2f74b5'},
+    showlegend:false
+  });
+}
+const layout = {
+  margin:{l:0,r:40,t:0,b:0},
+  paper_bgcolor:'rgba(0,0,0,0)',
+  plot_bgcolor:'rgba(0,0,0,0)',
+  geo:{
+    projection:{type:'natural earth'},
+    lataxis:{range:[20,60]},
+    lonaxis:{range:[-130,-60]},
+    showcountries:true,
+    countrycolor:'#ffffff',
+    countrywidth:1,
+    showsubunits:true,
+    subunitcolor:'#ffffff',
+    subunitwidth:1,
+    showland:true,
+    landcolor:'#eef2f7',
+    bgcolor:'rgba(0,0,0,0)'
+  },
+  hoverlabel:{align:'left', font:{size:13}},
+  dragmode:false
+};
+const config={responsive:true,displayModeBar:false,scrollZoom:false};
+Plotly.newPlot('map',traces,layout,config);
+window.addEventListener('resize',()=>Plotly.Plots.resize('map'));
+</script>
+</body>
+</html>
