@@ -246,55 +246,59 @@
 
 /* ── sponsor carousel ─────────────────────────────────────────────────── */
 
-/* Default state shows every sponsor at once. carousel.js adds `is-carousel`
-   to switch to one-at-a-time, so a script failure degrades to all logos
-   visible rather than to a single stuck one. */
-.carousel-track {
+/* Default state is a plain row of the real sponsors, and carousel.js opts into
+   the 3D drum by adding `is-carousel`. A script failure therefore leaves every
+   sponsor on screen rather than a dead stage. */
+.carousel-drum {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-  gap: clamp(32px, 6vw, 72px); list-style: none; margin: 0; padding: 0;
+  gap: clamp(32px, 6vw, 72px); list-style: none; margin: 0 auto; padding: 0;
 }
 .carousel-slide { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
-.carousel-slide img { display: block; max-height: 140px; width: auto; max-width: 100%; object-fit: contain; }
+.carousel-slide img { display: block; max-height: 130px; width: auto; max-width: 100%; object-fit: contain; }
 .carousel-name {
   font-family: var(--font-heading); font-size: 13px; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-700);
 }
 
-/* Slides stack in one grid cell, so the track sizes to the tallest of them and
-   nothing jumps as they cross-fade. */
-.carousel.is-carousel .carousel-track { display: grid; }
+/* The padding copies exist only to give the drum enough faces to read as a
+   drum. Outside 3D they would just look like the sponsor list stuttering, so
+   the flat fallback shows one of each. */
+.carousel-slide[data-dupe] { display: none; }
+.carousel.is-carousel .carousel-slide[data-dupe] { display: flex; }
+
+/* ── the drum ─────────────────────────────────────────────────────────── */
+
+.carousel.is-carousel .carousel-stage {
+  perspective: 1150px; perspective-origin: 50% 45%;
+  height: 300px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.carousel.is-carousel .carousel-drum {
+  display: block; position: relative;
+  width: var(--panel-w, 300px); height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.95s cubic-bezier(0.25, 0.9, 0.3, 1);
+  will-change: transform;
+}
 .carousel.is-carousel .carousel-slide {
-  grid-area: 1 / 1; opacity: 0; visibility: hidden;
-  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+  position: absolute; inset: 0; margin: auto; height: max-content;
+  backface-visibility: hidden;
+  /* Faces either side of the front one are dimmed. It reads as depth, and with
+     a short sponsor list it also stops the padding copies competing for
+     attention with the logo actually being presented. */
+  opacity: 0.28; transition: opacity 0.7s ease;
 }
-.carousel.is-carousel .carousel-slide.is-active {
-  opacity: 1; visibility: visible;
-  transition: opacity 0.6s ease, visibility 0s linear 0s;
-}
+.carousel.is-carousel .carousel-slide.is-active { opacity: 1; }
 
-/* Gated purely on .is-carousel, with no `hidden` attribute involved: an author
-   `display` declaration beats the UA's [hidden]{display:none}, so a base
-   `display:flex` here would leave the Pause button on screen in the static
-   fallback, visible but wired to nothing. */
-.carousel-controls { display: none; align-items: center; justify-content: center; gap: 24px; margin-top: 36px; }
-.carousel.is-carousel .carousel-controls { display: flex; }
-.carousel-dots { display: flex; gap: 10px; }
-.carousel-dot {
-  width: 12px; height: 12px; padding: 0; cursor: pointer;
-  background: transparent; border: 2px solid var(--color-neutral-500);
-}
-.carousel-dot[aria-current="true"] { background: var(--color-accent-solid); border-color: var(--color-accent-solid); }
-.carousel-dot:hover { border-color: var(--color-accent-solid); }
-.carousel-pause {
-  background: transparent; border: none; cursor: pointer; padding: 4px 2px;
-  font: 700 11px var(--font-heading); letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--color-neutral-700);
-}
-.carousel-pause:hover { color: var(--color-accent-700); }
-.carousel-dot:focus-visible, .carousel-pause:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+/* No visible controls by request. The carousel itself is the focus target, and
+   rotation halts while it is hovered or focused, which is what a keyboard user
+   gets in place of a Pause button. */
+.carousel:focus { outline: none; }
+.carousel:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 6px; }
 
-@media (prefers-reduced-motion: reduce) {
-  .carousel.is-carousel .carousel-slide { transition: none; }
+@media (max-width: 680px) {
+  .carousel.is-carousel .carousel-stage { height: 250px; perspective: 800px; }
+  .carousel-slide img { max-height: 104px; }
 }
 
 .checklist { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; max-width: 74ch; }
