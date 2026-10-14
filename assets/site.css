@@ -272,7 +272,12 @@
   transition: opacity 0.6s ease, visibility 0s linear 0s;
 }
 
-.carousel-controls { display: flex; align-items: center; justify-content: center; gap: 24px; margin-top: 36px; }
+/* Gated purely on .is-carousel, with no `hidden` attribute involved: an author
+   `display` declaration beats the UA's [hidden]{display:none}, so a base
+   `display:flex` here would leave the Pause button on screen in the static
+   fallback, visible but wired to nothing. */
+.carousel-controls { display: none; align-items: center; justify-content: center; gap: 24px; margin-top: 36px; }
+.carousel.is-carousel .carousel-controls { display: flex; }
 .carousel-dots { display: flex; gap: 10px; }
 .carousel-dot {
   width: 12px; height: 12px; padding: 0; cursor: pointer;
