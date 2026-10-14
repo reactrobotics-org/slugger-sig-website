@@ -74,20 +74,34 @@
     </header>
 
     <section class="section section-last">
-      <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Event sponsors">
-        <ul class="carousel-track">
-          <li class="carousel-slide is-active">
-            <img src="assets/Henkel_Logo_RGB_Red.png" alt="" width="554" height="413">
-            <span class="carousel-name">Henkel</span>
-          </li>
-          <li class="carousel-slide">
-            <img src="assets/slugger-factory.png" alt="" width="600" height="486">
-            <span class="carousel-name">Louisville Slugger Museum &amp; Factory</span>
-          </li>
-        </ul>
-        <div class="carousel-controls" data-carousel-controls>
-          <div class="carousel-dots" data-carousel-dots></div>
-          <button type="button" class="carousel-pause" data-carousel-pause>Pause</button>
+      <div class="carousel" data-carousel tabindex="0" aria-roledescription="carousel" aria-label="Event sponsors. Rotation stops while this is focused; use the left and right arrow keys to step through.">
+        <div class="carousel-stage">
+          <ul class="carousel-drum" data-carousel-drum>
+            <li class="carousel-slide is-active">
+              <img src="assets/Henkel_Logo_RGB_Red.png" alt="" width="554" height="413">
+              <span class="carousel-name">Henkel</span>
+            </li>
+            <li class="carousel-slide">
+              <img src="assets/slugger-factory.png" alt="" width="600" height="486">
+              <span class="carousel-name">Louisville Slugger Museum &amp; Factory</span>
+            </li>
+            <li class="carousel-slide" data-dupe aria-hidden="true">
+              <img src="assets/Henkel_Logo_RGB_Red.png" alt="" width="554" height="413">
+              <span class="carousel-name">Henkel</span>
+            </li>
+            <li class="carousel-slide" data-dupe aria-hidden="true">
+              <img src="assets/slugger-factory.png" alt="" width="600" height="486">
+              <span class="carousel-name">Louisville Slugger Museum &amp; Factory</span>
+            </li>
+            <li class="carousel-slide" data-dupe aria-hidden="true">
+              <img src="assets/Henkel_Logo_RGB_Red.png" alt="" width="554" height="413">
+              <span class="carousel-name">Henkel</span>
+            </li>
+            <li class="carousel-slide" data-dupe aria-hidden="true">
+              <img src="assets/slugger-factory.png" alt="" width="600" height="486">
+              <span class="carousel-name">Louisville Slugger Museum &amp; Factory</span>
+            </li>
+          </ul>
         </div>
       </div>
 

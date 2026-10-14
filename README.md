@@ -156,21 +156,53 @@ and rotation pick up the new slide automatically.
 `alt=""` is deliberate: the visible `.carousel-name` caption underneath already
 gives the sponsor's name, so alt text would make a screen reader say it twice.
 
-Three things about the carousel are load-bearing rather than decorative:
+### The drum
 
-- **The static row is the default.** The markup shows every sponsor side by side;
-  `carousel.js` opts into one-at-a-time by adding `is-carousel`. If the script
-  fails to load, every sponsor is still on screen, which is the failure mode a
-  sponsor can live with.
-- **Reduced motion gets the static row too**, not a paused carousel. A stopped
-  carousel parks one sponsor behind a Play button nobody presses.
-- **The pause control is required**, not optional polish. Content that animates
-  automatically for more than five seconds needs a way to stop it (WCAG 2.2.2),
-  so the controls are built by the script rather than hand-placed.
+Faces sit evenly around a cylinder: each is turned `i * (360 / count)` degrees
+and pushed out along Z by the radius where neighbouring faces just touch,
+`(panelWidth / 2) / tan(PI / count)`. The drum is then rotated to bring a face
+forward, and pulled back by that same radius so the front face lands on the
+perspective plane and is never scaled by depth.
 
-Worth knowing: with only two sponsors, the carousel hides one of them at any
-moment. If a sponsor asks for constant visibility, deleting `is-carousel` from
-`carousel.js` turns the page into a permanent row of all logos.
+All of that is computed in `carousel.js` from the slide count, so **adding a
+sponsor needs no CSS and no geometry changes**. Radius, face angle and panel
+width all re-derive, including on resize.
+
+### The padding copies
+
+There are six faces but only two sponsors: each logo appears three times,
+because a drum needs five or more faces before it reads as a drum rather than
+two panels flapping. Two things keep that from looking like a bug, and both
+matter if you edit the list:
+
+- **The order alternates** (Henkel, Museum, Henkel, Museum, …) rather than
+  grouping the copies. A drum shows three faces at once, so grouped copies would
+  put Henkel next to Henkel in the same frame. Alternating guarantees the two
+  faces flanking the front one are always the *other* brand.
+- **Off-centre faces are dimmed to 28%.** It reads as depth, and it stops the
+  copies competing with the logo actually being presented.
+
+Copies carry `data-dupe`, which hides them in the flat fallback so a visitor
+without JS sees one of each rather than the list stuttering. **When real
+sponsors arrive, delete the `data-dupe` slides** and the drum keeps working
+unchanged.
+
+### Load-bearing, not decorative
+
+- **The flat row is the default.** The markup renders sponsors side by side and
+  `carousel.js` opts into the drum by adding `is-carousel`. If the script fails,
+  every sponsor is still on screen, which is the failure mode a sponsor can live
+  with.
+- **The pause control is required.** Content that animates automatically for
+  more than five seconds needs a way to stop it (WCAG 2.2.2). The controls are
+  shown by CSS off `.is-carousel`, never by a `hidden` attribute: an author
+  `display` rule beats the UA stylesheet's `[hidden] {display:none}`, which once
+  left a dead Pause button on screen in the flat fallback.
+- **Rotation runs regardless of `prefers-reduced-motion`.** A turning 3D drum is
+  a lot of motion, so this is a deliberate trade against that preference, made
+  because the alternative left anyone with Windows animations off seeing nothing
+  move at all. WCAG 2.2.2 is still met through Pause. If strict reduced-motion
+  behaviour is wanted later, gate the `run()` call on the media query.
 
 `slugger-factory.png` was derived from the supplied `Slugger Factory.avif`, which
 had an opaque black background that would have shown as a black rectangle on the
