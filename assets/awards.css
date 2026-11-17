@@ -1,0 +1,30 @@
+/* Award descriptions keep native tap and keyboard disclosure controls. */
+.awards-featured { align-items: start; }
+.award-details > summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  list-style: none;
+}
+.award-details > summary::-webkit-details-marker { display: none; }
+.award-details > summary::after {
+  content: '+';
+  flex: none;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--color-accent-700);
+}
+.award-details[open] > summary::after { content: '\2212'; }
+.award-details > summary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 6px;
+}
+.award-description { margin-top: 18px; font-size: 15px; line-height: 1.6; }
+.award-description p { margin: 0 0 12px; }
+.award-description a { font-size: 13px; }
+@media print {
+  .award-details > summary::after { display: none; }
+  .award-details::details-content { display: block; }
+}

@@ -44,6 +44,22 @@ assets/apple-touch-icon.png  Home-screen icon (180x180, generated from slugger.p
 sluggersig.png      Superseded 2026 logo, kept for reference.
 ```
 
+## Local preview
+
+From this website folder, run:
+
+```powershell
+npm run dev
+```
+
+Open http://127.0.0.1:5173 in your browser. For the awards page, open
+http://127.0.0.1:5173/judging.html. Save edits and refresh to see changes.
+Press Ctrl+C in the terminal to stop the server.
+
+Node.js and npm must be installed; no `npm install` is needed. If PowerShell
+blocks `npm`, use `npm.cmd run dev`. The preview is available only on this computer.
+To use another port in PowerShell, set `$env:PORT = '5174'` before starting.
+
 ## Editing
 
 The ten pages are plain, self-contained HTML. For a content change, just edit
